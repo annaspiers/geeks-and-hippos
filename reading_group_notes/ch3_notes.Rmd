@@ -1,0 +1,69 @@
+---
+title: "Gelman & Hill Ch 3 - Linear regression: the basics"
+author: "Anna Spiers"
+date: "2/4/2020"
+output: html_document
+---
+
+``` {r, include=FALSE}
+```
+
+### Main take-aways
+
+#### Terminology and notation  
+* Take $Y = mX + b + error$  
+    * $Y$ is the *outcome* variable (aka explanatory, response)  
+    * $X$ is the *predictor* variable  
+    * *Dependent* and *independent* are terms for describing probability distributions 
+    * $y_i$ is an element of $Y$ and is the outcome for the $i^{th}$ individual
+* Individual data points are the *units of analysis*    
+* Take $kids.score = 58 + 16*mom.hs + 0.5*mom.iq - 0.2*mom.hs*mom.iq + error$  
+    * Four *predictors*: intercept, $mom.hs$, $mom.iq$, interaction  
+    * Two *inputs*: $mom.hs, mom.iq$  
+
+#### One predictor
+* Think of a regression as a comparison of averages rather than a representation of relationships between variables. In this mindset, we are explicit about the regression’s limitations for defining relationships causally.      
+*  The points on the regression line are average outcome values for subpopulations defined by these outcome values
+    * E.g., children whose mothers have an IQ of 100 will on average score 6 points higher than children whose mothers have an IQ of 90  
+* The *intercept* is the average outcome value when all predictor values are 0. This is mathematically sound, but not necessarily realistically sound (e.g., IQ)    
+
+#### Multiple predictors
+* aka multiple linear regression
+* Interpretation
+    * Put simply, you can interpret each coefficient “with all other predictors held constant”. However, this interpretation doesn’t always make sense (e.g., with predictors IQ and IQ^2, or interactions).
+    ???????????
+I don’t understand the difference between conterfactual and predictive interprataions ?????????
+
+#### Interactions
+* Including interaction terms is a way to allow a model to be fit differently to different subsets of data
+* Adding an interaction between two groups allows the slope to vary between their subgroups (e.g., maternal high school completion and maternal IQ)
+* Some coefficients are interpretable only for certain subgroups
+
+#### Statistical inference
+* Regression in vector-matrix notation
+    * The deterministic prediction of an outcome can be written out in vector-matrix notation: $X_i\beta = \beta_1X_{i1} + ... + \beta_kX_{ik}$, where
+        * $\beta$ is a vector and $X$ is a matrix
+            * $X$ is made of $X_i$s, and each $X_i$ is a predictor variable vector for the model
+            * $\beta$ is a coefficient vector
+        * Take the child score model as an example, $X_i\beta = \beta_1X_{i1} + ... + \beta_kX_{ik}$
+            * there are $i$ = $1,...,n = 1378$ units of children's test scores 
+            * there are $k = 4$ predictors in vector $X_i$
+                * $X_{i1}$ is a constant term that is 1 for each $i$. This constant is multiplied by $\beta_1$ to make the intercept
+                * $X_{i2}$ is the mother's high school completion status (0 or 1) 
+                * $X_{i3}$ is the mother's IQ score
+                * $X_{i4}$ is the interaction between mother's IQ score and high school completion status
+            * $\beta$ has length $k=4$ too
+            * See Fig 3.6
+* The following are two equivalent ways of writing the model
+    * Classical linear regression model
+        * $y_i = X_i\beta + \epsilon_i$ written concisely
+        * $y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i$ for $i = 1,...,n$ where errors $\epsilon_i$ have independent normal distributions with mean 0 and sd $\sigma$
+    * Distribution form
+        * $y_i  X_i\beta + \epsilon_i$ written concisely
+        * $y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i$ for $i = 1,...,n$ where errors $\epsilon_i$ have indepdnent normal
+    
+        
+    *
+            
+        
+
