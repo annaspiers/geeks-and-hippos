@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ``` {r, include=FALSE}
+library(arm) #display
 ```
 
 ### Main take-aways
@@ -61,9 +62,7 @@ I don’t understand the difference between conterfactual and predictive interpr
     * Distribution form
         * $y_i  X_i\beta + \epsilon_i$ written concisely
         * $y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i$ for $i = 1,...,n$ where errors $\epsilon_i$ have indepdnent normal
-    
-        
-    *
+    * 
             
         
 
