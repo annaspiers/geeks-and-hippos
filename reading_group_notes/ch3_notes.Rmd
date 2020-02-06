@@ -1,8 +1,10 @@
 ---
-title: "Gelman & Hill Ch 3 - Linear regression: the basics"
+title: 'Gelman & Hill Ch 3 - Linear regression: the basics'
 author: "Anna Spiers"
 date: "2/4/2020"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ``` {r, include=FALSE}
@@ -60,9 +62,32 @@ I don’t understand the difference between conterfactual and predictive interpr
         * $y_i = X_i\beta + \epsilon_i$ written concisely
         * $y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i$ for $i = 1,...,n$ where errors $\epsilon_i$ have independent normal distributions with mean 0 and sd $\sigma$
     * Distribution form
-        * $y_i  X_i\beta + \epsilon_i$ written concisely
-        * $y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i$ for $i = 1,...,n$ where errors $\epsilon_i$ have indepdnent normal
-    * 
-            
-        
+        * $y_i \sim N(X_i\beta, \sigma^2)$ for $i = 1,...,n$ where $X$ is an $n$x$k$ matrix with $i^{th}$ row $X_i$
+    * Multivariate notation 
+        * $y \sim N(X\beta, \sigma^2I)$, where $y$ is a vector of length $n$, $X$ is a $n$x$k$ matrix of predictors, $\beta$ is a column vector of length $k$ and $I$ is the $n$x$n$ identity matrix
+* Fitting and summarizing regressions in R
+    * use display() function to summarize a linear model, rather than print() (displays too little info) or summary() (displays too much info)
+* Least squares estimate of the vector of regression coefficients, $\beta$
+    * $\hat \beta$ is estimated by minimizing $\sum_{i=1}^{n} (y_i - X_i\hat \beta)^2$. By doing so, we minimize error in our prediction
+    * the least squares estimate of $\hat \beta$ is a linear transformation of the outcomes $y$, specifically $\hat \beta = (X^tX)^{-1}X^ty$
+    * bonus: the least squares estimate is also the maximum likelihood estimate if the errors are independent and with equan variance and normally distributed
+* Standard error of $\hat \beta$ quantifies the uncertainty in the coefficient estimates.
+    * the data are roughly consistent with values of $\beta$ in the range between the estimate +- 2 SE
+    * The uncertainty in the coefficient estimates will be correlated when not using a study with a balanced design, but more on that in ch7
+* residuals can be used to diagnose problems in the model
+    * AIS what does this sentence mean? "As a byproduct of the least squares estimation of $\beta$, the residuals, $r_i$ will be uncorrelated with all the predictors in the model
+    * The residual standard deviation, $\hat \sigma$ is a measure of the average distance each observation falls from its model prediction
+    * $R^2$ is the fraction of variance "explained" but the model. The "unexplained variance is $\hat \sigma^2$
+        * $R^2 = 1-\hat \sigma^2/s_y^2$
+    * degrees of freedom estimates residual errors: $n-k$ (# of data points minus # of estimated coefficients), $n>k$
+    * AIS - understand this: standard errors for $\beta$ are proportional to $\sigma$
+
+To do
+finish reading chapter
+do exercises
+go back and clean chapter notes to only *essential* takaways
+return to AIS comments
+
+
+
 

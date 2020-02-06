@@ -460,12 +460,41 @@ summary {
 </ul></li>
 <li>Distribution form
 <ul>
-<li><span class="math inline">\(y_i X_i\beta + \epsilon_i\)</span> written concisely</li>
-<li><span class="math inline">\(y_i = \beta_1X_{i1} + ... + \beta_kX_{ik} + \epsilon_i\)</span> for <span class="math inline">\(i = 1,...,n\)</span> where errors <span class="math inline">\(\epsilon_i\)</span> have indepdnent normal</li>
+<li><span class="math inline">\(y_i \sim N(X_i\beta, \sigma^2)\)</span> for <span class="math inline">\(i = 1,...,n\)</span> where <span class="math inline">\(X\)</span> is an <span class="math inline">\(n\)</span>x<span class="math inline">\(k\)</span> matrix with <span class="math inline">\(i^{th}\)</span> row <span class="math inline">\(X_i\)</span></li>
 </ul></li>
-<li></li>
+<li>Multivariate notation
+<ul>
+<li><span class="math inline">\(y \sim N(X\beta, \sigma^2I)\)</span>, where <span class="math inline">\(y\)</span> is a vector of length <span class="math inline">\(n\)</span>, <span class="math inline">\(X\)</span> is a <span class="math inline">\(n\)</span>x<span class="math inline">\(k\)</span> matrix of predictors, <span class="math inline">\(\beta\)</span> is a column vector of length <span class="math inline">\(k\)</span> and <span class="math inline">\(I\)</span> is the <span class="math inline">\(n\)</span>x<span class="math inline">\(n\)</span> identity matrix</li>
+</ul></li>
+</ul></li>
+<li>Fitting and summarizing regressions in R
+<ul>
+<li>use display() function to summarize a linear model, rather than print() (displays too little info) or summary() (displays too much info)</li>
+</ul></li>
+<li>Least squares estimate of the vector of regression coefficients, <span class="math inline">\(\beta\)</span>
+<ul>
+<li><span class="math inline">\(\hat \beta\)</span> is estimated by minimizing <span class="math inline">\(\sum_{i=1}^{n} (y_i - X_i\hat \beta)^2\)</span>. By doing so, we minimize error in our prediction</li>
+<li>the least squares estimate of <span class="math inline">\(\hat \beta\)</span> is a linear transformation of the outcomes <span class="math inline">\(y\)</span>, specifically <span class="math inline">\(\hat \beta = (X^tX)^{-1}X^ty\)</span></li>
+<li>bonus: the least squares estimate is also the maximum likelihood estimate if the errors are independent and with equan variance and normally distributed</li>
+</ul></li>
+<li>Standard error of <span class="math inline">\(\hat \beta\)</span> quantifies the uncertainty in the coefficient estimates.
+<ul>
+<li>the data are roughly consistent with values of <span class="math inline">\(\beta\)</span> in the range between the estimate +- 2 SE</li>
+<li>The uncertainty in the coefficient estimates will be correlated when not using a study with a balanced design, but more on that in ch7</li>
+</ul></li>
+<li>residuals can be used to diagnose problems in the model
+<ul>
+<li>AIS what does this sentence mean? &quot;As a byproduct of the least squares estimation of <span class="math inline">\(\beta\)</span>, the residuals, <span class="math inline">\(r_i\)</span> will be uncorrelated with all the predictors in the model</li>
+<li>The residual standard deviation, <span class="math inline">\(\hat \sigma\)</span> is a measure of the average distance each observation falls from its model prediction</li>
+<li><span class="math inline">\(R^2\)</span> is the fraction of variance “explained” but the model. The &quot;unexplained variance is <span class="math inline">\(\hat \sigma^2\)</span>
+<ul>
+<li><span class="math inline">\(R^2 = 1-\hat \sigma^2/s_y^2\)</span></li>
+</ul></li>
+<li>degrees of freedom estimates residual errors: <span class="math inline">\(n-k\)</span> (# of data points minus # of estimated coefficients), <span class="math inline">\(n&gt;k\)</span></li>
+<li>AIS - understand this: standard errors for <span class="math inline">\(\beta\)</span> are proportional to <span class="math inline">\(\sigma\)</span></li>
 </ul></li>
 </ul>
+<p>To do finish reading chapter do exercises go back and clean chapter notes to only <em>essential</em> takaways return to AIS comments</p>
 </div>
 </div>
 
