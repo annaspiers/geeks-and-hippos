@@ -374,7 +374,7 @@ summary {
 <div id="terminology-and-notation" class="section level4">
 <h4>Terminology and notation</h4>
 <ul>
-<li>Take <span class="math inline">\(Y = mX + b + error\)</span>
+<li><span class="math inline">\(Y = mX + b + error\)</span>
 <ul>
 <li><span class="math inline">\(Y\)</span> is the <em>outcome</em> variable (aka explanatory, response)<br />
 </li>
@@ -412,14 +412,15 @@ summary {
 <li>aka multiple linear regression</li>
 <li>Interpretation
 <ul>
-<li>Put simply, you can interpret each coefficient “with all other predictors held constant”. However, this interpretation doesn’t always make sense (e.g., with predictors IQ and IQ^2, or interactions). ??????????? I don’t understand the difference between conterfactual and predictive interprataions ?????????</li>
+<li>Put simply, you can interpret each coefficient “with all other predictors held constant”. However, this interpretation doesn’t always make sense (e.g., with predictors IQ and IQ^2, or interactions).</li>
+<li>counterfactual vs predictive interpretations</li>
 </ul></li>
 </ul>
 </div>
 <div id="interactions" class="section level4">
 <h4>Interactions</h4>
 <ul>
-<li>Including interaction terms is a way to allow a model to be fit differently to different subsets of data</li>
+<li>interaction terms allow a model to be fit differently to different subsets of data</li>
 <li>Adding an interaction between two groups allows the slope to vary between their subgroups (e.g., maternal high school completion and maternal IQ)</li>
 <li>Some coefficients are interpretable only for certain subgroups</li>
 </ul>
@@ -493,8 +494,23 @@ summary {
 <li>degrees of freedom estimates residual errors: <span class="math inline">\(n-k\)</span> (# of data points minus # of estimated coefficients), <span class="math inline">\(n&gt;k\)</span></li>
 <li>AIS - understand this: standard errors for <span class="math inline">\(\beta\)</span> are proportional to <span class="math inline">\(\sigma\)</span></li>
 </ul></li>
+<li>Section of Graphical displays of data and fitted model - no takeaways here, but hopefully holes in understanding show up doing exercises</li>
+<li>Assumptions and diagnostics (in decreasing order of importance)
+<ul>
+<li><strong>Validity</strong> - Choosing inputs is hard, but this planning step is important in assuring that the model you build answer the question you’re trying to answer. Sounds simple, but this step can be inconvenient, so is often overlooked. The outcome should reflect the phonomenon of interest. The model should include all relevant predictors. The model should generalize to cases to which it will be applied. As Brett likes to say, “Does this make sense?” For example, (1) a model of test scores will not necessarily predict child intelligence, (2) a population sample of all mothers and children may not be appropriate for inferences about mothers and children in the Temporary Asistance for Needy Families program. Data collected rarely meet all these criteria, but keeping these goals in mind can help you be precise about the types of questions you can or cannot answer reliably.</li>
+<li><strong>Additivity and linearity</strong> - AIS i don’t understand this</li>
+<li><strong>Independence of errors</strong> - A simple regression model assumes that the errors from the prediction line are independent</li>
+<li><strong>Equal variance of errors</strong> - AIS i don’t understand</li>
+<li><strong>Normality of errors</strong> -</li>
+<li>A good way to diagnose vioations of assumptions is to plot residuals <span class="math inline">\(r_i\)</span> vs fitted values <span class="math inline">\(X_i\hat\beta\)</span></li>
+</ul></li>
+<li>Prediction and validation
+<ul>
+<li>AIS see true model statement - what’s a true model? isn’t that an oxymoron?</li>
+<li>The most fundamental way to test a model is to use it to make predictions and then compare to actual data</li>
+</ul></li>
 </ul>
-<p>To do finish reading chapter do exercises go back and clean chapter notes to only <em>essential</em> takaways return to AIS comments</p>
+<p>To do finish reading chapter do exercises go back and clean chapter notes to only <em>essential</em> takaways - take visual notes on paper return to AIS comments</p>
 </div>
 </div>
 

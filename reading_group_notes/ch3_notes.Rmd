@@ -14,7 +14,7 @@ library(arm) #display
 ### Main take-aways
 
 #### Terminology and notation  
-* Take $Y = mX + b + error$  
+* $Y = mX + b + error$  
     * $Y$ is the *outcome* variable (aka explanatory, response)  
     * $X$ is the *predictor* variable  
     * *Dependent* and *independent* are terms for describing probability distributions 
@@ -26,7 +26,7 @@ library(arm) #display
 
 #### One predictor
 * Think of a regression as a comparison of averages rather than a representation of relationships between variables. In this mindset, we are explicit about the regression’s limitations for defining relationships causally.      
-*  The points on the regression line are average outcome values for subpopulations defined by these outcome values
+* The points on the regression line are average outcome values for subpopulations defined by these outcome values
     * E.g., children whose mothers have an IQ of 100 will on average score 6 points higher than children whose mothers have an IQ of 90  
 * The *intercept* is the average outcome value when all predictor values are 0. This is mathematically sound, but not necessarily realistically sound (e.g., IQ)    
 
@@ -34,11 +34,10 @@ library(arm) #display
 * aka multiple linear regression
 * Interpretation
     * Put simply, you can interpret each coefficient “with all other predictors held constant”. However, this interpretation doesn’t always make sense (e.g., with predictors IQ and IQ^2, or interactions).
-    ???????????
-I don’t understand the difference between conterfactual and predictive interprataions ?????????
+  * counterfactual vs predictive interpretations
 
 #### Interactions
-* Including interaction terms is a way to allow a model to be fit differently to different subsets of data
+* interaction terms allow a model to be fit differently to different subsets of data
 * Adding an interaction between two groups allows the slope to vary between their subgroups (e.g., maternal high school completion and maternal IQ)
 * Some coefficients are interpretable only for certain subgroups
 
@@ -81,13 +80,20 @@ I don’t understand the difference between conterfactual and predictive interpr
         * $R^2 = 1-\hat \sigma^2/s_y^2$
     * degrees of freedom estimates residual errors: $n-k$ (# of data points minus # of estimated coefficients), $n>k$
     * AIS - understand this: standard errors for $\beta$ are proportional to $\sigma$
+* Section of Graphical displays of data and fitted model - no takeaways here, but hopefully holes in understanding show up doing exercises
+* Assumptions and diagnostics (in decreasing order of importance)
+    * **Validity** - Choosing inputs is hard, but this planning step is important in assuring that the model you build answer the question you're trying to answer. Sounds simple, but this step can be inconvenient, so is often overlooked. The outcome should reflect the phonomenon of interest. The model should include all relevant predictors. The model should generalize to cases to which it will be applied. As Brett likes to say, "Does this make sense?" For example, (1) a model of test scores will not necessarily predict child intelligence, (2) a population sample of all mothers and children may not be appropriate for inferences about mothers and children in the Temporary Asistance for Needy Families program. Data collected rarely meet all these criteria, but keeping these goals in mind can help you be precise about the types of questions you can or cannot answer reliably.
+    * **Additivity and linearity** - AIS i don't understand this
+    * **Independence of errors** - A simple regression model assumes that the errors from the prediction line are independent
+    * **Equal variance of errors** - AIS i don't understand
+    * **Normality of errors** - 
+    * A good way to diagnose vioations of assumptions is to plot residuals $r_i$ vs fitted values $X_i\hat\beta$
+* Prediction and validation
+    * AIS see true model statement - what's a true model? isn't that an oxymoron?
+    * The most fundamental way to test a model is to use it to make predictions and then compare to actual data
 
 To do
 finish reading chapter
 do exercises
-go back and clean chapter notes to only *essential* takaways
+go back and clean chapter notes to only *essential* takaways - take visual notes on paper
 return to AIS comments
-
-
-
-
