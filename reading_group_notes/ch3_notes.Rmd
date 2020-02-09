@@ -83,10 +83,11 @@ library(arm) #display
 * Section of Graphical displays of data and fitted model - no takeaways here, but hopefully holes in understanding show up doing exercises
 * Assumptions and diagnostics (in decreasing order of importance)
     * **Validity** - Choosing inputs is hard, but this planning step is important in assuring that the model you build answer the question you're trying to answer. Sounds simple, but this step can be inconvenient, so is often overlooked. The outcome should reflect the phonomenon of interest. The model should include all relevant predictors. The model should generalize to cases to which it will be applied. As Brett likes to say, "Does this make sense?" For example, (1) a model of test scores will not necessarily predict child intelligence, (2) a population sample of all mothers and children may not be appropriate for inferences about mothers and children in the Temporary Asistance for Needy Families program. Data collected rarely meet all these criteria, but keeping these goals in mind can help you be precise about the types of questions you can or cannot answer reliably.
-    * **Additivity and linearity** - AIS i don't understand this
+    * **Additivity and linearity** - Additivity implies no interaction. Linearity implies the same outcome response for the same shift in predictor variable at any of its values. If additivity is violated, add interactions. if linearity is violated, use GAM.
     * **Independence of errors** - A simple regression model assumes that the errors from the prediction line are independent
     * **Equal variance of errors** - AIS i don't understand
     * **Normality of errors** - 
+    * **Gaussian distribution of outcome** - Anna added this from [this helpful explanation of GLM vs GAM](https://christophm.github.io/interpretable-ml-book/extend-lm.html#lm-interact). If normal distribution of outcome is violated, use GLM.
     * A good way to diagnose vioations of assumptions is to plot residuals $r_i$ vs fitted values $X_i\hat\beta$
 * Prediction and validation
     * AIS see true model statement - what's a true model? isn't that an oxymoron?
