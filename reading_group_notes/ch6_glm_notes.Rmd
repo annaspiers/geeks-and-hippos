@@ -1,0 +1,70 @@
+---
+title: 'Gelman & Hill Ch 6 - Generalized linear models'
+author: "Anna Spiers"
+date: "2/19/2020"
+output:
+  html_document: default
+---
+
+``` {r, include=FALSE}
+```
+
+### Main take-aways
+
+#### 6.1 Intro
+Any glm involves:  
+1. A data vector $y = (y_1,...y-n)$  
+2. Predictors $X$ and coefficients $\beta$  
+3. A link function $g$, yielding a vector of transformed data $\hat y = g^{-1}(X \beta)$ that are used to model the data  
+4. a data distribution, $p(y|\hat y)$  
+5. Possibly other parameters, such as variances, overdispersions, and cutpoints, involved in the predictors, link function, ad data distribution  
+
+##### GLM options
+| Model | transformation | data distribution | written as | data type | notes |
+| ----- | ----- |  ----- | ----- | ----- | ----------- |
+| linear regression | identity, $g(u) = u$  |  normal |  | continuous  |  Normal distribution of data yields standard deviation $\sigma$. Errors distributed normally |
+| logistic regression | inverse-logit, $g^{-1}(u)=logit^{-1}(u)$ | probability for binary data, $Pr(y=1)=\hat y$ |  | binary data | Overdispersion is not possible here where two outcomes are possible for each data point  |
+| Poisson | logarithmic, $g(u)=exp(u)$ | Poisson |  | count data | Logarithmic transforms a continuous linear predictor $X_i\beta$ to a positive $\hat y_i$. Improved by the inclusion of an overdispersion parameter. |
+| overdispersed Poisson |  | quasipoisson |  | count data | $y_i$ ~ overdispersed Poisson$(u_ie^{X_i\beta}, \omega)$, this model describes any count-data model for which the variance of the data is $\omega$ times the mean, reducing to the Poisson if $\omega = 1$ |
+| negative-binomial |  |  |  | count data | $y_i$ ~ Negative-binomial(mean=$u_ie^{X_i\beta}$, overdispersion = $\omega$) |
+| logistic-binomial | inverse-logit, $g^{-1}(u)=logit^{-1}(u)$ | binomial | $y_i \sim Binomial(n_i,p_i)$ and $p_i = logit^{-1}(X_i\beta)$ | settings where each $y_i$ is the number of successes in some number $n_i$ of tries | Improved by the inclusion of an overdispersion parameter. The logistic model can be used for count data when using the binomial distribution to model the number of "successes" out of a set number of possibilities, with the probability of success being fit to a logistic regression. |
+| Overdispersed binomial regressions |  | `quasibinomial(link="logit")` or beta-binomial |  |  |  |
+| probit |  |  | Pr($y_i$=1) = $\Phi(X_i\beta)$ where $\Phi$ is the noraml cumulative distribution function, or $y_i$ = {0 if $z_i$ > 0, 1 if $z_i$ < 0} and $z_i$ = $X_i\beta + \epsilon_i$ and $\epsilon_i \sim N(0,1)$| binary data |  |
+| multinomial logit | inverse-logit, $g^{-1}(u)=logit^{-1}(u)$ | multinomial | Pr($y=k$) = Pr($y>k-1$) - Pr($y>k$) = $logit^{-1}(X\beta-c_{k-1}) - logit^{-1}(X\beta-c_k)$ where $c_k$ are cutpoints |  | Extension of logistic regression for categorical outcomes with more than two options. Requires additional parameters to model the multiple possibilities of data. Outcomes are ordered (agree, neutral, disagree) or unordered (vanilla, chocolate, strawberry). |
+| multinomial probit | whatever probit's is | multinomial |  |  | Extension of probit regression for categorical outcomes with more than two options. Requires additional parameters to model the multiple possibilities of data. Outcomes are ordered (agree, neutral, disagree) or unordered (vanilla, chocolate, strawberry). |
+| robust regression |  |  |  | binary data | replace the usual normal or logistic models by other distributions (like the Student-t for data with large errors) that allow occasional extreme values |
+|  |  |  |  |  |
+
+AIS finish filling out
+AIS in logistic regression, why make both sides inverse and not regular
+AIS so is there a binomial model, separate from logistic-binomial, or are these the same?
+AIS are logistic-binomial and logit models the same?
+
+In R, we will use `glm()` to fit logistic-binomial, probit, and Poisson regressions.  
+We will use `polr()` to fit ordered logit and probit regressions.  
+We will use the `mnp` package to fit unordered probit regressions.  
+
+
+#### Exposure, and overdispersion
+* Exposure
+  * In many Poisson applications, the counts can be interpreted relative to some baseline or *exposure* (e.g. the number of cars taht travel through an intersection)
+  * In the general Poisson regression model, we think of $y_i$ as the number of cases in a process with rate $\theta_i$ and exposure $u_i$
+  * $y_i ~ Poisson(u_i\theta_i)$, where, as before, $\theta_i = exp(X_i\beta)$
+  * $log(u_i)$ is called the *offset* in glm terminology, to reach the baseline
+  * putting the $log(exposure)$ into the model as an offset is equivalent to including it as a predictor but with its coefficient fixed to 1. Sometimes you add the exposure alone and let its coefficient be estimated from the data
+* Overdispersion
+  * Poisson and logistic-binomial regressions do not supply a variance parameter, and thus can easily be overdispersed
+  * A model is overdispersed if its standardized residuals are largely greater than 1
+  * You can also test for overdispersion by comparing the sum of squares of standardized residuals to the chi-squared (n-k) distribution where n is the number of data points and k is the number of linear predictors
+    * see tops of p. 115, 117 for code to calculate overdispersion in R
+
+#### Differences between similar models
+* Binomial vs Poisson models
+  * They're similar, but applied in slightly different situations;
+    * If the outcome is interpreted as the number of "successes" out of $n_i$ trials, then use the BINOMIAL/LOGISTIC model 
+    * If the outcome does not have a natural limit - not based on a number of independent trials - then use the POISSON/LOGARITHMIC REGRESSION model
+* Probit vs Logit models
+  * The probit is similar to logistic reg but with the logit function replaced by the normal cumulative distribution, or equivalently, with the normal distribution instead of the logistic in the latent-data errors, thus with a residual sd of 1 (probit) rather than 1.6 (logit)
+
+#### More complex GLMs
+See section 6.7 for examples of more complicated glm's to consider
